@@ -4,3 +4,20 @@
 (b) 缺少返回值类型          //function needs return type
 (c) 缺少一半的大括号        //parameter cannot use same name twice
 (d) 函数体必须在大括号内    //function body needs braces
+
+6.6
+// example
+size_t count_add(int n)       // n is a parameter.
+{
+    static size_t ctr = 0;    // ctr is a static variable.
+    ctr += n;
+    return ctr;
+}
+
+int main()
+{
+    for (size_t i = 0; i != 10; ++i)  // i is a local variable.
+      cout << count_add(i) << endl;
+
+    return 0;
+}
