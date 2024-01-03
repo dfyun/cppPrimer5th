@@ -2,25 +2,22 @@
 #define EX7_11_H
 #include <iostream>
 #include <string>
-using std::cout; 
-using std::cin;
-using std::endl;
 
 struct Sales_data{
     Sales_data() = default;
     Sales_data(const std::string& s) : bookNo(s) {}
-    Sales_data(const std::string& s, unsigned n, double p) : bookNo(s), units_sold(n), revenue(p) {}
-    Sales_data(std::istream&);
+    Sales_data(const std::string& s, unsigned n, double p) : bookNo(s), units_sold(n), revenue(p*n) {}
+    Sales_data(std::istream& is);
 
     std::string isbn() const {return bookNo;}
-    Sales_data& combine(Sales_data& rhs);
+    Sales_data& combine(const Sales_data& rhs);
     double avg_price() const;
     std::string bookNo;
     unsigned units_sold = 0;
     double revenue = 0.0;
 };
 
-Sales_data& Sales_data::combine(Sales_data& rhs){
+Sales_data& Sales_data::combine(const Sales_data& rhs){
     units_sold += rhs.units_sold;
     revenue += rhs.revenue;
     return *this;
@@ -45,7 +42,11 @@ std::istream& read(std::istream& is, Sales_data& item)
 
 std::ostream& print(std::ostream& os, const Sales_data& item)
 {
-    os << item.isbn() << " " << item.units_sold << " " << item.revenue << item.avg_price();
+    os << item.isbn() << " " << item.units_sold << " " << item.revenue << " " << item.avg_price();
     return os;
+}
+
+Sales_data::Sales_data(std::istream& is){
+    read(is, *this);
 }
 #endif
