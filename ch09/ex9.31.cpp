@@ -37,3 +37,9 @@ void forward_list_f(){
         cout << i << " ";
     cout << endl;
 }
+
+int main()
+{
+    list_f();
+    forward_list_f();
+}
