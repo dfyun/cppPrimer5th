@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}/${fileBasenameNoExtension}",
-            "args": [],
+            "args": ["../data/given_to_transform.txt"],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
